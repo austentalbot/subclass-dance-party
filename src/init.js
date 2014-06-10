@@ -1,5 +1,6 @@
 $(document).ready(function(){
   window.dancers = [];
+  window.movingDancers=[];
 
   $(".addDancerButton").on("click", function(event){
     /* This function sets up the click handlers for the create-dancer
@@ -21,12 +22,50 @@ $(document).ready(function(){
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
     // make a dancer with a random position
-    var dancer = new dancerMakerFunction(
-      $("body").height() * Math.random(),
-      $("body").width() * Math.random(),
-      Math.random() * 1000
-    );
+    //different condition for MovingDancer
+    if (dancerMakerFunctionName==='MovingDancer') {
+      var dancer = new dancerMakerFunction(
+        $("body").height() * Math.random(),
+        $("body").width() * Math.random(),
+        3000
+      );
+      window.movingDancers.push(dancer);
+    } else {
+      var dancer = new dancerMakerFunction(
+        $("body").height() * Math.random(),
+        $("body").width() * Math.random(),
+        Math.random() * 1000
+      );
+      //add new dancer to dancer array
+      window.dancers.push(dancer);
+    }
+
     $('body').append(dancer.$node);
   });
+
+  $('.lineUpButton').on('click', function() {
+    for (var i=0; i<window.dancers.length; i++) {
+      // window.dancers[i].css({'left': '0'});
+      var dancer = window.dancers[i];
+      dancer.setPosition(30, dancer.left);
+    }
+    for (var i=0; i<window.movingDancers.length; i++) {
+      // window.dancers[i].css({'left': '0'});
+      var movingDancer = window.movingDancers[i];
+      movingDancer.setPosition(30, movingDancer.left);
+      movingDancer.findNeighbor();
+    }
+  });
+
+
+  // every x seconds, we readjust their coordinates
+  setInterval(function(){
+    for (var i = 0; i < window.movingDancers.length; i++){
+      var movingDancer = window.movingDancers[i];
+      var left = movingDancer.coordinates[0];
+      var top = movingDancer.coordinates[1];
+      movingDancer.setPosition(top+1, left+1);
+    }
+  }, 3000);
 });
 
