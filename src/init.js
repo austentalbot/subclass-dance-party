@@ -57,6 +57,11 @@ $(document).ready(function(){
     }
   });
 
+  //hover image fade
+  $(document).on('click', '.mouseenter', function() {
+    console.log('hover');
+  });
+
 
   // every x seconds, we readjust their coordinates
   setInterval(function(){

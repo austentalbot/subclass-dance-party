@@ -22,36 +22,187 @@ body, a:link, a:visited, a:active{
 .title{
   background-color: #777;
 }
-.dancer{
-  border:10px solid red;
-  border-radius:10px;
-  position:absolute;
+
+.dancer {
+/*  border:10px solid red;
+*/
+/*border-radius:10px;
+*/  position:absolute;
 }
-.color{
+.color {
   border-color: blue;
 }
-.shape{
+/*.shape{
   border-color: red;
   width: 100px !important;
   height: 100px !important;
-}
-.movingcolor{
-  border-color: green;
+}*/
+/*.shape {
+  margin: 0 auto;
+  width: 500px;
+  height: 300px;
+  position: relative;
+  border-radius: 5px;
+  border: 1px solid #111;
+  overflow: hidden;
+}*/
+.shape {
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-image: url('img/fruit_pear.png');
+  background-size:contain;
+  position: absolute;
+  -webkit-animation: moveX 4.5s linear 0s infinite alternate, moveY 4.0s linear 0s infinite alternate;
+  -moz-animation: moveX 4.5s linear 0s infinite alternate, moveY 4.0s linear 0s infinite alternate;
+  -o-animation: moveX 4.5s linear 0s infinite alternate, moveY 4.0s linear 0s infinite alternate;
+  animation: moveX 4.5s linear 0s infinite alternate, moveY 4.0s linear 0s infinite alternate;
 }
 
+@-webkit-keyframes moveX {
+  from { left: 0; } to { left: 90%; }
+}
+@-moz-keyframes moveX {
+  from { left: 0; } to { left: 90%; }
+}
+@-o-keyframes moveX {
+  from { left: 0; } to { left: 90%; }
+}
+@keyframes moveX {
+  from { left: 0; } to { left: 90%; }
+}
+@-webkit-keyframes moveY {
+  from { top: 0; } to { top: 90%; }
+}
+@-moz-keyframes moveY {
+  from { top: 0; } to { top: 90%; }
+}
+@-o-keyframes moveY {
+  from { top: 0; } to { top: 90%; }
+}
+@keyframes moveY {
+  from { top: 0; } to { top: 90%; }
+}
+
+.pear {
+  background-image: url('img/fruit_pear.png');
+}
+.apple {
+  background-image: url('img/fruit_apple.png');
+}
+.strawberry {
+  background-image: url('img/fruit_strawberry.png');
+}
+.cherry {
+  background-image: url('img/fruit_cherry.png');
+}
+
+.movingdancer{
+  background-image: url('img/moving_ghost.png');
+  background-size:contain;
+  width:50px;
+  height:50px;
+  transition: all 3.5s ease;
+}
+
+/*
 .hoverdancer {
   border: none !important;
   width: 100px;
   height: 100px;
-  background: red;
-  -moz-border-radius: 50px;
-  -webkit-border-radius: 50px;
-  border-radius: 50px;
-}
+    background: red;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+  }
+
 .hoverdancer:hover {
-  background:blue;
-  -webkit-transition:width 2s, height 2s, background-color 2s,
-    -webkit-transform 2s;
-  transition:width 2s, height 2s, background-color 2s, transform 2s;
+    background:blue;
+    -webkit-transition:width 2s, height 2s, background-color 2s,
+      -webkit-transform 2s;
+    transition:width 2s, height 2s, background-color 2s, transform 2s;
+}
+*/
+
+/*.hoverdancer {
+  border: none !important;
+  width: 96px;
+  height: 96px;
+  background-image: url('img/fade_ghost1.png');
+  }
+
+.hoverdancer:hover {
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+    background-image:url('img/fade_ghost2.png');
+}
+*/
+.hoverdancer {
+ position:relative;
+ width: 96px;
+ height: 96px;
 }
 
+.hoverdancer img {
+ position:absolute;
+ left:0;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+.hoverimage1:hover{
+  opacity:0;
+}
+
+.blue {
+  border: none;
+  background: url('img/blue_ghost.png');
+  width:50px;
+  height:50px;
+}
+
+.white {
+  border: none;
+  background: url('img/blue_ghost_white.png');
+}
+
+
+.pacman {
+  position: absolute;
+  display: block;
+  width: 0px;
+  height: 0px;
+  background: transparent;
+  border-right: 60px solid transparent;
+  border-top: 60px solid yellow;
+  border-left: 60px solid yellow;
+  border-bottom: 60px solid yellow;
+  border-top-left-radius: 60px;
+  border-top-right-radius: 60px;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+}
+
+.p0 {
+  -webkit-transform: rotate(-60deg);
+  -webkit-animation: r .2s ease infinite alternate;
+}
+
+.p1 {
+  -webkit-transform: rotate(60deg);
+  -webkit-animation: r .2s ease infinite alternate;
+}
+
+@-webkit-keyframes r {
+  to {
+    -webkit-transform: rotate(0);
+  }
+}
+
+.pos-rel {
+  position: relative;
+}
