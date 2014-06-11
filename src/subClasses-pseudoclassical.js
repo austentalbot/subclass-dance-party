@@ -1,87 +1,87 @@
-var BlinkyDancer = function(top, left, timeBetweenSteps){
-  Dancer.call(this, top, left, timeBetweenSteps);
+var BlinkyGhost = function(top, left, timeBetweenSteps){
+  Dancer.apply(this, arguments);
   this.$node.addClass('blue');
 };
 
-BlinkyDancer.prototype = Object.create(Dancer.prototype);
-BlinkyDancer.prototype.constructor =  BlinkyDancer;
-BlinkyDancer.prototype.step = function(){
+BlinkyGhost.prototype = Object.create(Dancer.prototype);
+BlinkyGhost.prototype.constructor =  BlinkyGhost;
+BlinkyGhost.prototype.step = function(){
   Dancer.prototype.step.call(this);
+  //toggle back and forth between two colors
   this.$node.toggleClass('white');
 };
 
-var ColorDancer = function(top, left, timeBetweenSteps){
+var EatingPacman = function(top, left, timeBetweenSteps){
   Dancer.apply(this, arguments);
-  //this.$node = $('<span><div class="pacman p0"></div><div class="pacman p1"></div></span>');
   this.$node.removeClass('dancer');
+  //need to set parent tag position relatively to keep from ending up in top-left corner
   this.$node.addClass('pos-rel');
+  //create two divs which move simultaneously and independently
+  //each div functions as separate lip
   this.$node.html('<div class="pacman p0"></div><div class="pacman p1"></div>');
-  //this.$node.setPosition(top, left);
 };
 
-ColorDancer.prototype = Object.create(Dancer.prototype);
-ColorDancer.prototype.constructor =  ColorDancer;
-ColorDancer.prototype.step = function(){
+EatingPacman.prototype = Object.create(Dancer.prototype);
+EatingPacman.prototype.constructor =  EatingPacman;
+EatingPacman.prototype.step = function(){
   Dancer.prototype.step.call(this);
-  //specific color dancer behavior
 };
 
-var HoverDancer = function(top, left, timeBetweenSteps){
+var HoverGhost = function(top, left, timeBetweenSteps){
   Dancer.apply(this, arguments);
-  this.$node.addClass('hoverdancer');
+  this.$node.addClass('hoverghost');
   this.$node.removeClass('dancer');
+  //need to set parent tag position relatively to keep from ending up in top-left corner
   this.$node.addClass('pos-rel');
+  //add two image tags which are stacked on each other; top image fades upon hover
   this.$node.html('<img class="hoverimage0" src="img/fade_ghost1.png"></img><img class="hoverimage1" src="img/fade_ghost2.png"></img>');
 };
 
-HoverDancer.prototype = Object.create(Dancer.prototype);
-HoverDancer.prototype.constructor =  HoverDancer;
-HoverDancer.prototype.step = function(){
+HoverGhost.prototype = Object.create(Dancer.prototype);
+HoverGhost.prototype.constructor =  HoverGhost;
+HoverGhost.prototype.step = function(){
   Dancer.prototype.step.call(this);
-  //specific color dancer behavior
 };
 
 
-var ShapeDancer = function(top, left, timeBetweenSteps){
-  Dancer.call(this, top, left, timeBetweenSteps);
-  this.$node.addClass('shape');
+var MovingFruit = function(top, left, timeBetweenSteps){
+  Dancer.apply(this, arguments);
+  this.$node.addClass('fruit');
   var fruits = ['pear', 'apple', 'strawberry', 'cherry'];
   var fruit = fruits[Math.floor(Math.random()*fruits.length)];
   this.$node.addClass(fruit);
 };
 
-ShapeDancer.prototype = Object.create(Dancer.prototype);
-ShapeDancer.prototype.constructor =  ShapeDancer;
-ShapeDancer.prototype.step = function(){
+MovingFruit.prototype = Object.create(Dancer.prototype);
+MovingFruit.prototype.constructor =  MovingFruit;
+MovingFruit.prototype.step = function(){
   Dancer.prototype.step.call(this);
 };
 
 
-var MovingDancer = function(top, left, timeBetweenSteps){
+var MovingGhost = function(top, left, timeBetweenSteps){
   Dancer.call(this, top, left, timeBetweenSteps);
   this.coordinates;
-  this.$node.addClass('movingdancer');
+  this.$node.addClass('movingghost');
 };
 
-MovingDancer.prototype = Object.create(Dancer.prototype);
-MovingDancer.prototype.constructor =  MovingDancer;
-MovingDancer.prototype.step = function(){
+MovingGhost.prototype = Object.create(Dancer.prototype);
+MovingGhost.prototype.constructor =  MovingGhost;
+MovingGhost.prototype.step = function(){
   Dancer.prototype.step.call(this);
   this.findNeighbor();
 
 };
 
-MovingDancer.prototype.findNeighbor=function() {
-  //loop through all dancers
-  // ignore own coordinates
-  // calculate distance from self using pythagorean a^2+b^2=c^2
-  // move incrementally to .01 away from closest
+//find closest neighbor and move to that position
+MovingGhost.prototype.findNeighbor=function() {
   var min;
+  var dancer;
+  var distance;
   for (var i = 0; i < window.dancers.length;i++){
-    var dancer = window.dancers[i];
-    // console.log(dancer.left, this.left, dancer.top, this.top);
-    var distance = Math.sqrt(Math.pow(dancer.left - this.left, 2) + Math.pow(dancer.top - this.top, 2));
-    if ( distance < min || min === undefined){
+    dancer = window.dancers[i];
+    distance = Math.sqrt(Math.pow(dancer.left - this.left, 2) + Math.pow(dancer.top - this.top, 2));
+    if (distance < min || min === undefined){
       this.coordinates = [dancer.left, dancer.top];
       min = distance;
     }

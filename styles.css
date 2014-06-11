@@ -24,29 +24,13 @@ body, a:link, a:visited, a:active{
 }
 
 .dancer {
-/*  border:10px solid red;
-*/
-/*border-radius:10px;
-*/  position:absolute;
+  position:absolute;
 }
 .color {
   border-color: blue;
 }
-/*.shape{
-  border-color: red;
-  width: 100px !important;
-  height: 100px !important;
-}*/
-/*.shape {
-  margin: 0 auto;
-  width: 500px;
-  height: 300px;
-  position: relative;
-  border-radius: 5px;
-  border: 1px solid #111;
-  overflow: hidden;
-}*/
-.shape {
+
+.fruit {
   display: block;
   width: 50px;
   height: 50px;
@@ -97,7 +81,7 @@ body, a:link, a:visited, a:active{
   background-image: url('img/fruit_cherry.png');
 }
 
-.movingdancer{
+.movingghost{
   background-image: url('img/moving_ghost.png');
   background-size:contain;
   width:50px;
@@ -105,47 +89,13 @@ body, a:link, a:visited, a:active{
   transition: all 3.5s ease;
 }
 
-/*
-.hoverdancer {
-  border: none !important;
-  width: 100px;
-  height: 100px;
-    background: red;
-    -moz-border-radius: 50px;
-    -webkit-border-radius: 50px;
-    border-radius: 50px;
-  }
-
-.hoverdancer:hover {
-    background:blue;
-    -webkit-transition:width 2s, height 2s, background-color 2s,
-      -webkit-transform 2s;
-    transition:width 2s, height 2s, background-color 2s, transform 2s;
-}
-*/
-
-/*.hoverdancer {
-  border: none !important;
-  width: 96px;
-  height: 96px;
-  background-image: url('img/fade_ghost1.png');
-  }
-
-.hoverdancer:hover {
-    -webkit-transition: opacity 1s ease-in-out;
-    -moz-transition: opacity 1s ease-in-out;
-    -o-transition: opacity 1s ease-in-out;
-    transition: opacity 1s ease-in-out;
-    background-image:url('img/fade_ghost2.png');
-}
-*/
-.hoverdancer {
+.hoverghost {
  position:relative;
  width: 96px;
  height: 96px;
 }
 
-.hoverdancer img {
+.hoverghost img {
  position:absolute;
  left:0;
   -webkit-transition: opacity 1s ease-in-out;
